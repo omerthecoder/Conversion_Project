@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model DataTextVM
+
+<div class="text-center">
+    <form id="formTranslate" asp-action="Index" method="post">
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Enter Your Text Here</label>
+            <textarea asp-for="Text" class="form-control" id="translate" rows="3"></textarea>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" onclick="callTranslate()">Convert</button>
+        </div>
+        <br />
+        <div class="form-group">
+            <textarea asp-for="Translated" class="form-control" id="translatedText" rows="3"></textarea>
+        </div>
+    </form>
+    <div>
+        <div id="dataTable"></div>
+    </div>
+
+    @section Scripts{
+        <script>
+            var form = $("formTranslate");
+            function callTranslate() {
+                var postObject = {};
+                postObject.text = $("#translate").val();
+                $.post("https://api.funtranslations.com/translate/leetspeak.json", postObject, function (response) {
+                    $("#translatedText").val(response.contents.translated);
+                    $(form).submit();
+                }).fail(function (error) {
+                    console.log(error);
+                    alert('İstenmeyen bir hata meydana geldi');
+                });
+            }
+        </script>
+    }
+</div>
