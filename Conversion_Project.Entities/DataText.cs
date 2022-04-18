@@ -13,7 +13,5 @@ namespace Conversion_Project.Entities
         public string Translated { get; set; }
         public string Translation { get; set; }
 
-        public int? UserId { get; set; }
-        public virtual UserAccount UserAccount { get; set; }
     }
 }

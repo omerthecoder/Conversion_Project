@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Conversion_Project.DTO\Conversion_Project.DTO.csproj" />
     <ProjectReference Include="..\Conversion_Project.Entities\Conversion_Project.Entities.csproj" />
   </ItemGroup>
 

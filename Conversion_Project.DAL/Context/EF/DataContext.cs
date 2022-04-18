@@ -9,6 +9,7 @@ namespace Conversion_Project.DAL.Context.EF
     using Entities;
     using Configurations;
     using Microsoft.EntityFrameworkCore;
+    using System.Threading;
 
     public class DataContext:DbContext
     {
@@ -22,7 +23,8 @@ namespace Conversion_Project.DAL.Context.EF
             modelBuilder.ApplyConfiguration(new DataTextConfiguration());
 
         }
-        public override int SaveChanges()
+       
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             var addedAuditedEntities = ChangeTracker.Entries().Where(t0 => t0.State == EntityState.Added).Select(d => d.Entity);
             var date = DateTime.Now;
@@ -30,8 +32,7 @@ namespace Conversion_Project.DAL.Context.EF
             {
                 (item as BaseEntity).RecordDate = date;
             }
-            return base.SaveChanges();
-
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
     }
 }

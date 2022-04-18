@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 
 namespace Conversion_Project.WEBUI
 {
+    using Conversion_Project.BL.Abstract;
+    using Conversion_Project.BL.Concrete;
+    using Conversion_Project.DAL.Abstact;
+    using Conversion_Project.DAL.Concrete;
     using DAL.Context.EF;
     using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +31,8 @@ namespace Conversion_Project.WEBUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IDataTextRepository,DataTextRepository>();
+            services.AddScoped<IDataTextBusiness,DataTextBusiness>();
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DbCs")));
         }
 
