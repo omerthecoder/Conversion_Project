@@ -1,9 +1,9 @@
 ﻿@section Head{
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 }
-@*@model DataTextVM*@
+@model DataTextVM
 
-@*<div class="text-center">
+<div class="text-center">
     <form id="formTranslate" asp-action="Index" method="post">
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Enter Your Text Here</label>
@@ -16,7 +16,8 @@
         <div class="form-group">
             <textarea asp-for="Translated" class="form-control" id="translatedText" rows="3"></textarea>
         </div>
-    </form>*@
+        <input type="hidden" asp-for="Translation"id="translationVal" />
+    </form>
     <table id="myTable">
         <thead>
             <tr>
@@ -29,36 +30,38 @@
 
     @section Scripts{
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-        @*<script>
+        <script>
             var form = $("#formTranslate");
             function callTranslate() {
                 var postObject = {};
                 postObject.text = $("#translate").val();
                 $.post("https://api.funtranslations.com/translate/leetspeak.json", postObject, function (response) {
                     $("#translatedText").val(response.contents.translated);
+                    $("#translationVal").val(response.contents.translation);
+                    
                     $(form).submit();
                 }).fail(function (error) {
                     console.log(error);
                     alert('İstenmeyen bir hata meydana geldi');
                 });
-            }*@
-<script>
-    $(document).ready(function () {
-        //var datasource = [
-        //    {
-        //        "Adi": "ömer", "Soyadi": "Kanra", "Telefon": "55555555"
-        //    }
-        //]
-        $('#myTable').DataTable(
-        //    {
-        //        data: datasource, columns: [
-        //            { data: 'Adi'},
-        //            { data: 'Soyadi' },
-        //            { data: 'Telefon' }
-        //        ]
-        //    }
-        //);
-    });</script>
+            }
+            @*<script>
+                $(document).ready(function () {
+                    //var datasource = [
+                    //    {
+                    //        "Adi": "ömer", "Soyadi": "Kanra", "Telefon": "55555555"
+                    //    }
+                    //]
+                    $('#myTable').DataTable(
+                //    {
+                //        data: datasource, columns: [
+                //            { data: 'Adi'},
+                //            { data: 'Soyadi' },
+                //            { data: 'Telefon' }
+                //        ]
+                //    }
+                //);
+            });</script>*@
         @*$('#dataTable').DataTable(
                 {
 
@@ -72,6 +75,6 @@
 
                 }
             );*@
-        @*</script>*@
+        </script>
     }
-@*</div>*@
+</div>
