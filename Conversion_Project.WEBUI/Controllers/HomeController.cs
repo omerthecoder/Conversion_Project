@@ -26,18 +26,22 @@ namespace Conversion_Project.WEBUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(DataTextVM dataText)
         {
-            DataText DText=new DataText();
+            DataText DText = new DataText();
             DText.DataId = dataText.DataId;
             DText.Text = dataText.Text;
             DText.Translated = dataText.Translated;
             DText.Translation = dataText.Translation;
-            if (DText!=null)
+            if (DText != null)
             {
                 await _dataTextBusiness.Add(DText);
             }
-            List<DataText> dataTexts = _dataTextBusiness.GetAll().ToList();
-            ViewBag.dataTexts = dataTexts;
             return View(dataText);
+        }
+
+        [HttpGet("get-all-data")]
+        public IActionResult GetData()
+        {
+            return Json(_dataTextBusiness.GetAll().ToArray());
         }
     }
 }

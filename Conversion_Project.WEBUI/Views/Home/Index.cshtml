@@ -16,17 +16,22 @@
         <div class="form-group">
             <textarea asp-for="Translated" class="form-control" id="translatedText" rows="3"></textarea>
         </div>
-        <input type="hidden" asp-for="Translation"id="translationVal" />
+        <input type="hidden" asp-for="Translation" id="translationVal" />
     </form>
-    <table id="myTable">
-        <thead>
-            <tr>
-                <th>Adı</th>
-                <th>Soyadı</th>
-                <th>Telefon</th>
-            </tr>
-        </thead>
-    </table>
+
+    <div style="margin:10px;">
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <th>DataId</th>
+                    <th>Text</th>
+                    <th>Translated</th>
+                    <th>Translation</th>
+                    <th>RecordDate</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 
     @section Scripts{
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -38,43 +43,30 @@
                 $.post("https://api.funtranslations.com/translate/leetspeak.json", postObject, function (response) {
                     $("#translatedText").val(response.contents.translated);
                     $("#translationVal").val(response.contents.translation);
-                    
+
                     $(form).submit();
                 }).fail(function (error) {
                     console.log(error);
                     alert('İstenmeyen bir hata meydana geldi');
                 });
             }
-            @*<script>
-                $(document).ready(function () {
-                    //var datasource = [
-                    //    {
-                    //        "Adi": "ömer", "Soyadi": "Kanra", "Telefon": "55555555"
-                    //    }
-                    //]
-                    $('#myTable').DataTable(
-                //    {
-                //        data: datasource, columns: [
-                //            { data: 'Adi'},
-                //            { data: 'Soyadi' },
-                //            { data: 'Telefon' }
-                //        ]
-                //    }
-                //);
-            });</script>*@
-        @*$('#dataTable').DataTable(
-                {
 
+            $(document).ready(function () {
+                $.getJSON("/get-all-data", function (response) {
+                    console.log(response);
+                    $('#myTable').DataTable({
+                        data: response,
+                        columns: [
+                            { data: "dataId" },
+                            { data: "text" },
+                            { data: "translated" },
+                            { data: "translation" },
+                            { data: "recordDate" }
+                        ]
+                    });
+                });
+            });
 
-                    data: @ViewBag.dataTexts, columns: [
-                        { data: 'DataId'},
-                        { data: 'Text' },
-                        { data: 'Translated' },
-                        { data: 'Translation' }
-                    ]
-
-                }
-            );*@
         </script>
     }
 </div>
