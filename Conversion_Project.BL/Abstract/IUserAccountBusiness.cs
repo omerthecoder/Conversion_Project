@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Conversion_Project.BL.Abstract
 {
     using DAL.Abstact;
-    public interface IDataTextBusiness:IDataTextRepository
+    public interface IUserAccountBusiness:IUserAccountRepository
     {
     }
 }

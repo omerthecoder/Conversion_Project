@@ -18,10 +18,11 @@ namespace Conversion_Project.DAL.Context.EF
 
         }
         public DbSet<DataText> DataText { get; set; }
+        public DbSet<UserAccount> UserAccount { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new DataTextConfiguration());
-
+            modelBuilder.ApplyConfiguration(new UserAccountConfiguration());
         }
        
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)

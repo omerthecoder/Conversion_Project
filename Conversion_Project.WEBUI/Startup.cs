@@ -4,10 +4,6 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Conversion_Project.WEBUI
 {
@@ -16,6 +12,7 @@ namespace Conversion_Project.WEBUI
     using Conversion_Project.DAL.Abstact;
     using Conversion_Project.DAL.Concrete;
     using DAL.Context.EF;
+    using Microsoft.AspNetCore.Mvc.Razor;
     using Microsoft.EntityFrameworkCore;
 
     public class Startup
@@ -33,6 +30,9 @@ namespace Conversion_Project.WEBUI
             services.AddControllersWithViews();
             services.AddScoped<IDataTextRepository,DataTextRepository>();
             services.AddScoped<IDataTextBusiness,DataTextBusiness>();
+            services.AddScoped<IUserAccountRepository, UserAccountRepository>();
+            services.AddScoped<IUserAccountBusiness, UserAccountBusiness>();
+            //services.Configure<RazorViewEngineOptions>(o => { })
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DbCs")));
         }
 
@@ -60,7 +60,7 @@ namespace Conversion_Project.WEBUI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

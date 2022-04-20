@@ -4,30 +4,35 @@
 @model DataTextVM
 
 <div class="text-center">
+    
     <form id="formTranslate" asp-action="Index" method="post">
-        <div class="form-group">
-            <label for="translate">Enter Your Text Here</label>
-            <textarea asp-for="Text" class="form-control" id="translate" rows="3"></textarea>
+        <div class="row">
+            <div class="form-group col-6">
+                <label for="translate ">Enter Your Text Here</label>
+                <textarea asp-for="Text" class="form-control" id="translate" rows="3" style="resize:none;height:150px"></textarea>
+            </div>
+
+            <div class="form-group col-6">
+                <label for="Translated ">Converted Text</label>
+                <textarea asp-for="Translated" class="form-control" id="translatedText" rows="3" style="resize: none; height: 150px"></textarea>
+            </div>
+            <input type="hidden" asp-for="Translation" id="translationVal" />
         </div>
         <div>
             <button type="button" class="btn btn-primary" onclick="callTranslate()">Convert</button>
         </div>
-        <br />
-        <div class="form-group">
-            <textarea asp-for="Translated" class="form-control" id="translatedText" rows="3"></textarea>
-        </div>
-        <input type="hidden" asp-for="Translation" id="translationVal" />
     </form>
-
+        
+    
     <div style="margin:10px;">
         <table id="myTable">
             <thead>
                 <tr>
                     <th>DataId</th>
                     <th>Text</th>
-                    <th>Translated</th>
-                    <th>Translation</th>
-                    <th>RecordDate</th>
+                    <th>Converted Text</th>
+                    <th>Conversion Format</th>
+                    <th>Record Date</th>
                 </tr>
             </thead>
         </table>

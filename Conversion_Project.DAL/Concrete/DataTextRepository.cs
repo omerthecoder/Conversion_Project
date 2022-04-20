@@ -26,7 +26,7 @@ namespace Conversion_Project.DAL.Concrete
         public virtual async Task Delete(int id)
         {
             var entity = await GetById(id);
-            _DB.Remove(entity);
+            _DB.DataText.Remove(entity);
             await _DB.SaveChangesAsync();
         }
 
