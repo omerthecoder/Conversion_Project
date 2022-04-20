@@ -13,11 +13,4 @@
     <PackageReference Include="coverlet.collector" Version="3.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Conversion_Project.BL\Conversion_Project.BL.csproj" />
-    <ProjectReference Include="..\Conversion_Project.DAL\Conversion_Project.DAL.csproj" />
-    <ProjectReference Include="..\Conversion_Project.Entities\Conversion_Project.Entities.csproj" />
-    <ProjectReference Include="..\Conversion_Project.WEBUI\Conversion_Project.WEBUI.csproj" />
-  </ItemGroup>
-
 </Project>

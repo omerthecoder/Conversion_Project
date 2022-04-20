@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Test_Conversion_Project
+namespace Conversion_Project.DAL.Test
 {
     [TestClass]
     public class UnitTest1
