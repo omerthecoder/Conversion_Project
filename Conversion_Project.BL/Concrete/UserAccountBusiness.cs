@@ -17,25 +17,6 @@ namespace Conversion_Project.BL.Concrete
             _userAccountService = userAccountService;
         }
 
-        public async Task Add(UserAccount entity)
-        {
-            await _userAccountService.Add(entity);
-        }
-
-        public async Task Delete(int id)
-        {
-            await _userAccountService.Delete(id);
-        }
-
-        public IQueryable<UserAccount> GetAll(Func<UserAccount, bool> predicate = null)
-        {
-            return _userAccountService.GetAll(predicate);
-        }
-
-        public Task<UserAccount> GetById(int id)
-        {
-            return _userAccountService.GetById(id);
-        }
 
         public UserAccount GetUser(string userName, string password)
         {

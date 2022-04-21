@@ -11,9 +11,13 @@ namespace Conversion_Project.DAL.Context.EF
     using Microsoft.EntityFrameworkCore;
     using System.Threading;
 
-    public class DataContext:DbContext
+    public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions options):base(options)
+        DataContext()
+        {
+
+        }
+        public DataContext(DbContextOptions options) : base(options)
         {
 
         }
@@ -24,7 +28,7 @@ namespace Conversion_Project.DAL.Context.EF
             modelBuilder.ApplyConfiguration(new DataTextConfiguration());
             modelBuilder.ApplyConfiguration(new UserAccountConfiguration());
         }
-       
+
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             var addedAuditedEntities = ChangeTracker.Entries().Where(t0 => t0.State == EntityState.Added).Select(d => d.Entity);
